@@ -1,11 +1,10 @@
-package com.fortuneOX.slots.ui.root
+package com.fortuneOX.slots.ui.spin
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.fortuneOX.slots.R
 import com.fortuneOX.slots.databinding.SpinListItemBinding
 
 class SpinAdapter: ListAdapter<Int, SpinAdapter.SpinViewHolder>(SpinDiffCallback()) {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/spin_background"
-    tools:context=".ui.root.SpinFragment">
+    tools:context=".ui.spin.SpinFragment">
 
     <ImageView
         android:id="@+id/imageView"

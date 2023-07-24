@@ -1,4 +1,4 @@
-package com.fortuneOX.slots.ui.root
+package com.fortuneOX.slots.ui.spin
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
