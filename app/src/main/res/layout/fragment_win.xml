@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_splash"
+    tools:context=".ui.win.WinFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/first_image_bg"
+        android:layout_width="121dp"
+        android:layout_height="148dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="57dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/first_bg" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/first_image"
+        android:layout_width="91dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="69dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/first" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/second_image_bg"
+        android:layout_width="147dp"
+        android:layout_height="166dp"
+        android:layout_marginTop="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/second_bg" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/second_image"
+        android:layout_width="113dp"
+        android:layout_height="129dp"
+        android:layout_marginTop="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/second" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/third_image_bg"
+        android:layout_width="150dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="11dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/third_bg" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/third_image"
+        android:layout_width="126dp"
+        android:layout_height="146dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/third" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/main_picture_win"
+        android:layout_width="670dp"
+        android:layout_height="469dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/main_win" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/text_you"
+        android:layout_width="204dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="460dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/title_you" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/text_win"
+        android:layout_width="218dp"
+        android:layout_height="89dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_you"
+        app:srcCompat="@drawable/title_win" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
