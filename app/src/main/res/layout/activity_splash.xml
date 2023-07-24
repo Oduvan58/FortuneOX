@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_splash"
+    tools:context=".ui.splash.SplashActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/transparent_main_picture"
+        android:layout_width="512dp"
+        android:layout_height="512dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_main_picture_splash" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/main_picture"
+        android:layout_width="472dp"
+        android:layout_height="472dp"
+        app:layout_constraintBottom_toBottomOf="@id/transparent_main_picture"
+        app:layout_constraintEnd_toEndOf="@id/transparent_main_picture"
+        app:layout_constraintStart_toStartOf="@id/transparent_main_picture"
+        app:layout_constraintTop_toTopOf="@id/transparent_main_picture"
+        app:srcCompat="@drawable/main_picture_splash" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/transparent_load"
+        android:layout_width="387dp"
+        android:layout_height="228dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/bg_load" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/load"
+        android:layout_width="378dp"
+        android:layout_height="237dp"
+        android:layout_marginBottom="-30dp"
+        app:layout_constraintBottom_toBottomOf="@id/transparent_load"
+        app:layout_constraintEnd_toEndOf="@id/transparent_load"
+        app:layout_constraintStart_toStartOf="@id/transparent_load"
+        app:srcCompat="@drawable/load" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
