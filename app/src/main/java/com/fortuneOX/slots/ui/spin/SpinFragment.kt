@@ -49,4 +49,8 @@ class SpinFragment : Fragment() {
        spinAdapter.submitList(spinItems)
     }
 
+    companion object {
+        fun newInstance() = SpinFragment()
+    }
+
 }
