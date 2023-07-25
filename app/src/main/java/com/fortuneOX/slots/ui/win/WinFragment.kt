@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.fortuneOX.slots.databinding.FragmentWinBinding
+import com.fortuneOX.slots.ui.spin.SpinFragment
 
 
 class WinFragment : Fragment() {
@@ -29,5 +30,9 @@ class WinFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        fun newInstance() = WinFragment()
     }
 }

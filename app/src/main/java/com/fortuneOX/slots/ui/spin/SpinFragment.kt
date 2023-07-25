@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fortuneOX.slots.R
 import com.fortuneOX.slots.databinding.FragmentSpinBinding
+import com.fortuneOX.slots.ui.win.WinFragment
 
 class SpinFragment : Fragment() {
 
@@ -54,7 +55,17 @@ class SpinFragment : Fragment() {
             stopSpinningList(spinAdapter3, binding.fourthList, 6000)
             stopSpinningList(spinAdapter4, binding.fifthList, 7000)
             Handler().postDelayed({
-                if (isSpinning) money.postValue(money.value?.plus(500) ?: 1000)
+                if (isSpinning) {
+                    money.postValue(money.value?.plus(500) ?: 1000)
+                    isSpinning = false
+//                    Handler().postDelayed({
+//                        requireActivity().supportFragmentManager
+//                            .beginTransaction()
+//                            .add(R.id.container, WinFragment.newInstance())
+//                            .commit()
+//                    }, 1000)1000
+
+                }
             }, 7000)
         }
 
@@ -68,7 +79,35 @@ class SpinFragment : Fragment() {
             Handler().postDelayed({
                 money.postValue(money.value?.plus(500) ?: 1000)
             }, 2500)
+
+//            Handler().postDelayed({
+//                requireActivity().supportFragmentManager
+//                    .beginTransaction()
+//                    .add(R.id.container, WinFragment.newInstance())
+//                    .commit()
+//            }, 1000)
+
         }
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        savedInstanceState?.let {
+            isSpinning = it.getBoolean(KEY_IS_SPINNING, false)
+            money.value = it.getInt(KEY_MONEY, 1000)
+
+            if (isSpinning) {
+                binding.spinButton.performClick()
+            }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putBoolean(KEY_IS_SPINNING, isSpinning)
+        outState.putInt(KEY_MONEY, money.value ?: 1000)
     }
 
     private fun stopSpinningList(adapter: SpinAdapter?, recyclerView: RecyclerView, time: Long) {
@@ -129,6 +168,9 @@ class SpinFragment : Fragment() {
 
     companion object {
         fun newInstance() = SpinFragment()
+        private const val KEY_MY_DATA = "myData"
+        private const val KEY_IS_SPINNING = "isSpinning"
+        private const val KEY_MONEY = "money"
     }
 
 }
