@@ -2,15 +2,16 @@ package com.fortuneOX.slots.ui.spin
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fortuneOX.slots.R
 import com.fortuneOX.slots.databinding.FragmentSpinBinding
-import kotlin.random.Random
 
 class SpinFragment : Fragment() {
 
@@ -54,9 +55,8 @@ class SpinFragment : Fragment() {
         }
     }
 
-    private fun stopSpinningList(adapter: SpinAdapter?, recyclerView: RecyclerView, time: Long) {
+    private fun stopSpinningList(adapter: SpinAdapter?,recyclerView: RecyclerView, time: Long) {
         Handler().postDelayed({
-            val random: Random = Random
             val coinIndex = adapter?.currentList?.indexOfFirst { it == R.drawable.orange }
             coinIndex?.let {
                 recyclerView.scrollToPosition(it)
@@ -105,7 +105,7 @@ class SpinFragment : Fragment() {
         val repeatCount = 1000
 
         repeat(repeatCount) {
-            infiniteList.addAll(listOf(createRandomList().random()))
+            infiniteList.addAll(createRandomList().shuffled())
         }
 
         return infiniteList
