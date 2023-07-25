@@ -138,6 +138,8 @@ class SpinFragment : Fragment() {
         binding.fourthList.adapter = spinAdapter3
         binding.fifthList.adapter = spinAdapter4
 
+        binding.fifthList.isClickable = false
+
         spinAdapter?.submitList(createInfiniteList())
         spinAdapter1?.submitList(createInfiniteList())
         spinAdapter2?.submitList(createInfiniteList())
