@@ -29,7 +29,7 @@
         android:id="@+id/money_container"
         android:layout_width="200dp"
         android:layout_height="70dp"
-        android:layout_margin="60dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -49,9 +49,9 @@
             android:id="@+id/money_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/inder"
             android:text="1000"
-            android:layout_marginStart="10dp"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -137,27 +137,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fourth_spin"
-        android:layout_width="60dp"
-        android:layout_height="200dp"
-        android:layout_margin="18dp"
-        android:background="@drawable/spin_rectangle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/third_spin"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fourth_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fifth_spin"
         android:layout_width="60dp"
         android:layout_height="200dp"
@@ -188,10 +167,31 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fourth_spin"
+        android:layout_width="60dp"
+        android:layout_height="200dp"
+        android:layout_margin="18dp"
+        android:background="@drawable/spin_rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/third_spin"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fourth_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/stop_button"
         android:layout_width="120dp"
-        android:layout_margin="20dp"
         android:layout_height="60dp"
+        android:layout_margin="20dp"
         android:background="@drawable/spin_button"
         app:layout_constraintEnd_toStartOf="@+id/spin_button"
         app:layout_constraintStart_toStartOf="parent"
@@ -200,8 +200,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/stop"
             android:layout_margin="10dp"
+            android:src="@drawable/stop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -214,24 +214,21 @@
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_margin="20dp"
-        app:layout_constraintStart_toEndOf="@id/stop_button"
         android:background="@drawable/spin_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/stop_button"
         app:layout_constraintTop_toBottomOf="@+id/second_spin">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/spin"
             android:layout_margin="10dp"
+            android:src="@drawable/spin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
