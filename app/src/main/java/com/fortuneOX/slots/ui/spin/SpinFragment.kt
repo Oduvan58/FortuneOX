@@ -1,5 +1,6 @@
 package com.fortuneOX.slots.ui.spin
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ class SpinFragment : Fragment() {
 
     private lateinit var binding: FragmentSpinBinding
     private var money = MutableLiveData(1000)
+    private var randomItem = 0
 
     private var spinAdapter: SpinAdapter? = null
     private var spinAdapter1: SpinAdapter? = null
@@ -40,8 +42,17 @@ class SpinFragment : Fragment() {
 
         money.observe(viewLifecycleOwner) {
             binding.moneyEditText.text = it.toString()
+
+            if (it >= 1500) {
+                requireActivity().supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.container, WinFragment.newInstance())
+                    .addToBackStack(null)
+                    .commit()
+            }
         }
         binding.spinButton.setOnClickListener {
+            randomItem = selectRandomItem()
             isSpinning = true
             spinAdapter?.itemCount?.let { it1 -> binding.firstList.smoothScrollToPosition(it1) }
             spinAdapter1?.itemCount?.let { it1 -> binding.secondList.smoothScrollToPosition(it1) }
@@ -58,15 +69,8 @@ class SpinFragment : Fragment() {
                 if (isSpinning) {
                     money.postValue(money.value?.plus(500) ?: 1000)
                     isSpinning = false
-//                    Handler().postDelayed({
-//                        requireActivity().supportFragmentManager
-//                            .beginTransaction()
-//                            .add(R.id.container, WinFragment.newInstance())
-//                            .commit()
-//                    }, 1000)1000
-
                 }
-            }, 7000)
+            }, 7500)
         }
 
         binding.stopButton.setOnClickListener {
@@ -78,14 +82,7 @@ class SpinFragment : Fragment() {
             stopSpinningList(spinAdapter4, binding.fifthList, 2500)
             Handler().postDelayed({
                 money.postValue(money.value?.plus(500) ?: 1000)
-            }, 2500)
-
-//            Handler().postDelayed({
-//                requireActivity().supportFragmentManager
-//                    .beginTransaction()
-//                    .add(R.id.container, WinFragment.newInstance())
-//                    .commit()
-//            }, 1000)
+            }, 3000)
 
         }
     }
@@ -112,7 +109,7 @@ class SpinFragment : Fragment() {
 
     private fun stopSpinningList(adapter: SpinAdapter?, recyclerView: RecyclerView, time: Long) {
         Handler().postDelayed({
-            val coinIndex = adapter?.currentList?.indexOfFirst { it == R.drawable.orange }
+            val coinIndex = adapter?.currentList?.indexOfFirst { it == randomItem }
             coinIndex?.let {
                 recyclerView.scrollToPosition(it)
             }
@@ -137,8 +134,8 @@ class SpinFragment : Fragment() {
         binding.thirdList.adapter = spinAdapter2
         binding.fourthList.adapter = spinAdapter3
         binding.fifthList.adapter = spinAdapter4
+        binding.fifthList.isEnabled = false
 
-        binding.fifthList.isClickable = false
 
         spinAdapter?.submitList(createInfiniteList())
         spinAdapter1?.submitList(createInfiniteList())
@@ -167,10 +164,23 @@ class SpinFragment : Fragment() {
         R.drawable.orange,
     ).shuffled()
 
+    private fun selectRandomItem(): Int {
+        val items = listOf(
+            R.drawable.a,
+            R.drawable.b,
+            R.drawable.c,
+            R.drawable.d,
+            R.drawable.e,
+            R.drawable.orange
+        )
+        val randomIndex = (items.indices).random()
+        return items[randomIndex]
+    }
+
+
 
     companion object {
         fun newInstance() = SpinFragment()
-        private const val KEY_MY_DATA = "myData"
         private const val KEY_IS_SPINNING = "isSpinning"
         private const val KEY_MONEY = "money"
     }

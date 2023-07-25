@@ -29,7 +29,7 @@
         android:id="@+id/money_container"
         android:layout_width="200dp"
         android:layout_height="70dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -71,13 +71,21 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/cow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/first_spin"
         android:layout_width="60dp"
         android:layout_height="200dp"
-        android:layout_margin="18dp"
         android:background="@drawable/spin_rectangle"
+        app:layout_constraintEnd_toStartOf="@id/second_spin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -86,7 +94,6 @@
             android:id="@+id/first_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,8 +105,8 @@
         android:id="@+id/second_spin"
         android:layout_width="60dp"
         android:layout_height="200dp"
-        android:layout_margin="18dp"
         android:background="@drawable/spin_rectangle"
+        app:layout_constraintEnd_toStartOf="@id/third_spin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/first_spin"
         app:layout_constraintTop_toTopOf="parent">
@@ -108,7 +115,6 @@
             android:id="@+id/second_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +126,6 @@
         android:id="@+id/third_spin"
         android:layout_width="60dp"
         android:layout_height="200dp"
-        android:layout_margin="18dp"
         android:background="@drawable/spin_rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/fourth_spin"
@@ -131,7 +136,6 @@
             android:id="@+id/third_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -143,8 +147,6 @@
         android:id="@+id/fifth_spin"
         android:layout_width="60dp"
         android:layout_height="200dp"
-        android:layout_margin="20dp"
-        android:clickable="false"
         android:background="@drawable/spin_rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -162,21 +164,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/cow"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fourth_spin"
         android:layout_width="60dp"
         android:layout_height="200dp"
-        android:layout_margin="18dp"
         android:background="@drawable/spin_rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fifth_spin"
         app:layout_constraintStart_toEndOf="@id/third_spin"
         app:layout_constraintTop_toTopOf="parent">
 
