@@ -2,12 +2,11 @@ package com.fortuneOX.slots.ui.spin
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fortuneOX.slots.R
@@ -17,10 +16,15 @@ class SpinFragment : Fragment() {
 
     private lateinit var binding: FragmentSpinBinding
 
+    private var money = MutableLiveData(1000)
+
     private var spinAdapter: SpinAdapter? = null
     private var spinAdapter1: SpinAdapter? = null
     private var spinAdapter2: SpinAdapter? = null
     private var spinAdapter3: SpinAdapter? = null
+    private var spinAdapter4: SpinAdapter? = null
+
+    private var isSpinning = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -34,28 +38,43 @@ class SpinFragment : Fragment() {
 
         setupSpinAdapter()
 
-        binding.spinButton.setOnClickListener {
+        money.observe(viewLifecycleOwner) {
+            binding.moneyEditText.text = it.toString()
+        }
 
+        binding.spinButton.setOnClickListener {
+            isSpinning = true
             spinAdapter?.itemCount?.let { it1 -> binding.firstList.smoothScrollToPosition(it1) }
             spinAdapter1?.itemCount?.let { it1 -> binding.secondList.smoothScrollToPosition(it1) }
             spinAdapter2?.itemCount?.let { it1 -> binding.thirdList.smoothScrollToPosition(it1) }
             spinAdapter3?.itemCount?.let { it1 -> binding.fourthList.smoothScrollToPosition(it1) }
+            spinAdapter4?.itemCount?.let { it1 -> binding.fifthList.smoothScrollToPosition(it1) }
 
             stopSpinningList(spinAdapter, binding.firstList, 3000)
             stopSpinningList(spinAdapter1, binding.secondList, 4000)
             stopSpinningList(spinAdapter2, binding.thirdList, 5000)
             stopSpinningList(spinAdapter3, binding.fourthList, 6000)
+            stopSpinningList(spinAdapter4, binding.fifthList, 7000)
+            Handler().postDelayed({
+                if (isSpinning) money.postValue(money.value?.plus(500) ?: 1000)
+            }, 7000)
+
         }
 
         binding.stopButton.setOnClickListener {
-            stopSpinningList(spinAdapter, binding.firstList, 3000)
-            stopSpinningList(spinAdapter1, binding.secondList, 4000)
-            stopSpinningList(spinAdapter2, binding.thirdList, 5000)
-            stopSpinningList(spinAdapter3, binding.fourthList, 6000)
+            isSpinning = false
+            stopSpinningList(spinAdapter, binding.firstList, 500)
+            stopSpinningList(spinAdapter1, binding.secondList, 1000)
+            stopSpinningList(spinAdapter2, binding.thirdList, 1500)
+            stopSpinningList(spinAdapter3, binding.fourthList, 2000)
+            stopSpinningList(spinAdapter4, binding.fifthList, 2500)
+            Handler().postDelayed({
+                money.postValue(money.value?.plus(500) ?: 1000)
+            }, 2500)
         }
     }
 
-    private fun stopSpinningList(adapter: SpinAdapter?,recyclerView: RecyclerView, time: Long) {
+    private fun stopSpinningList(adapter: SpinAdapter?, recyclerView: RecyclerView, time: Long) {
         Handler().postDelayed({
             val coinIndex = adapter?.currentList?.indexOfFirst { it == R.drawable.orange }
             coinIndex?.let {
@@ -67,40 +86,31 @@ class SpinFragment : Fragment() {
 
     }
 
-    private fun stopSpinningSecond() {
-        Handler().postDelayed({
-            val coinIndex = spinAdapter1?.currentList?.indexOfFirst { it == R.drawable.orange }
-            coinIndex?.let {
-                binding.secondList.scrollToPosition(it)
-            }
-
-            binding.secondList.stopScroll()
-        }, 3000)
-
-    }
-
-
     private fun setupSpinAdapter() {
         spinAdapter = SpinAdapter()
         spinAdapter1 = SpinAdapter()
         spinAdapter2 = SpinAdapter()
         spinAdapter3 = SpinAdapter()
+        spinAdapter4 = SpinAdapter()
         binding.firstList.layoutManager = LinearLayoutManager(requireContext())
         binding.secondList.layoutManager = LinearLayoutManager(requireContext())
         binding.thirdList.layoutManager = LinearLayoutManager(requireContext())
         binding.fourthList.layoutManager = LinearLayoutManager(requireContext())
+        binding.fifthList.layoutManager = LinearLayoutManager(requireContext())
         binding.firstList.adapter = spinAdapter
         binding.secondList.adapter = spinAdapter1
         binding.thirdList.adapter = spinAdapter2
         binding.fourthList.adapter = spinAdapter3
+        binding.fifthList.adapter = spinAdapter4
 
-        spinAdapter?.submitList(createInfiniteList(createRandomList()))
-        spinAdapter1?.submitList(createInfiniteList(createRandomList()))
-        spinAdapter2?.submitList(createInfiniteList(createRandomList()))
-        spinAdapter3?.submitList(createInfiniteList(createRandomList()))
+        spinAdapter?.submitList(createInfiniteList())
+        spinAdapter1?.submitList(createInfiniteList())
+        spinAdapter2?.submitList(createInfiniteList())
+        spinAdapter3?.submitList(createInfiniteList())
+        spinAdapter4?.submitList(createInfiniteList())
     }
 
-    private fun createInfiniteList(list: List<Int>): List<Int> {
+    private fun createInfiniteList(): List<Int> {
         val infiniteList = mutableListOf<Int>()
         val repeatCount = 1000
 
